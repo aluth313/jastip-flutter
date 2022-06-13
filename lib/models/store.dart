@@ -2,12 +2,14 @@ class Store {
   String? name;
   String? rate;
   String? image;
+  String? category;
   var menus;
 
   Store({
     required this.name,
     required this.rate,
     required this.image,
+    required this.category,
     required this.menus,
   });
 }
@@ -71,31 +73,31 @@ var menus = [
   ];
 
 var storeNearbyList = [
-  Store(name: 'Warung Udaa', rate: '5.0', image: 'images/store.png', menus: menus),
-  Store(name: 'Warung Teh Ai', rate: '4.5', image: 'images/store.png', menus: menus),
-  Store(name: 'Alfamart Alim Rugi', rate: '4.8', image: 'images/store.png', menus: menus),
-  Store(name: 'Indomaret Selalu Jaya', rate: '4.9', image: 'images/store.png', menus: menus),
-  Store(name: 'Warung AA Bukan Gym', rate: '5.0', image: 'images/store.png', menus: menus),
+  Store(name: 'Warung Udaa', rate: '5.0', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
+  Store(name: 'Warung Teh Ai', rate: '4.5', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
+  Store(name: 'Alfamart Alim Rugi', rate: '4.8', image: 'images/store.png', category: 'Toko Retail', menus: menus),
+  Store(name: 'Indomaret Selalu Jaya', rate: '4.9', image: 'images/store.png', category: 'Toko Retail', menus: menus),
+  Store(name: 'Warung AA Bukan Gym', rate: '5.0', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
 ];
 
 var allStoreList = [
-  Store(name: 'Warung Udaa', rate: '5.0', image: 'images/store.png', menus: menus),
-  Store(name: 'Warung Sukses Terus', rate: '5.0', image: 'images/store.png', menus: menus),
-  Store(name: 'Warung Teh Ucu', rate: '4.0', image: 'images/store.png', menus: menus),
-  Store(name: 'Warung Teh Lilis', rate: '5.0', image: 'images/store.png', menus: menus),
-  Store(name: 'Warung Teh Ai', rate: '4.5', image: 'images/store.png', menus: menus),
-  Store(name: 'Alfamart Alim Rugi', rate: '4.8', image: 'images/store.png', menus: menus),
-  Store(name: 'Yomart Cihanyir', rate: '4.6', image: 'images/store.png', menus: menus),
-  Store(name: 'Griya Majalaya', rate: '5.0', image: 'images/store.png', menus: menus),
-  Store(name: 'Indomaret Selalu Jaya', rate: '4.9', image: 'images/store.png', menus: menus),
-  Store(name: 'Warung AA Bukan Gym', rate: '5.0', image: 'images/store.png', menus: menus),
-  Store(name: 'Warung Darmaji', rate: '4.7', image: 'images/store.png', menus: menus),
+  Store(name: 'Warung Udaa', rate: '5.0', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
+  Store(name: 'Warung Sukses Terus', rate: '5.0', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
+  Store(name: 'Warung Teh Ucu', rate: '4.0', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
+  Store(name: 'Warung Teh Lilis', rate: '5.0', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
+  Store(name: 'Warung Teh Ai', rate: '4.5', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
+  Store(name: 'Alfamart Alim Rugi', rate: '4.8', image: 'images/store.png', category: 'Toko Retail', menus: menus),
+  Store(name: 'Yomart Cihanyir', rate: '4.6', image: 'images/store.png', category: 'Toko Retail', menus: menus),
+  Store(name: 'Griya Majalaya', rate: '5.0', image: 'images/store.png', category: 'Toko Retail', menus: menus),
+  Store(name: 'Indomaret Selalu Jaya', rate: '4.9', image: 'images/store.png', category: 'Toko Retail', menus: menus),
+  Store(name: 'Warung AA Bukan Gym', rate: '5.0', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
+  Store(name: 'Warung Darmaji', rate: '4.7', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
 ];
 
 var popularStoreList = [
-  Store(name: 'Warung Sukses Terus', rate: '5.0', image: 'images/store.png', menus: menus),
-  Store(name: 'Warung Teh Ai', rate: '4.5', image: 'images/store.png', menus: menus),
-  Store(name: 'Alfamart Alim Rugi', rate: '4.8', image: 'images/store.png', menus: menus),
-  Store(name: 'Warung AA Bukan Gym', rate: '5.0', image: 'images/store.png', menus: menus),
-  Store(name: 'Warung Darmaji', rate: '4.7', image: 'images/store.png', menus: menus),
+  Store(name: 'Warung Sukses Terus', rate: '5.0', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
+  Store(name: 'Warung Teh Ai', rate: '4.5', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
+  Store(name: 'Alfamart Alim Rugi', rate: '4.8', image: 'images/store.png', category: 'Toko Retail', menus: menus),
+  Store(name: 'Warung AA Bukan Gym', rate: '5.0', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
+  Store(name: 'Warung Darmaji', rate: '4.7', image: 'images/store.png', category: 'Toko Kelontong', menus: menus),
 ];

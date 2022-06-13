@@ -49,7 +49,7 @@ class Home extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   TextButton(
-                    onPressed: (){},
+                    onPressed: () {},
                     child: Text(
                       'Lihat Semua',
                       style: TextStyle(color: Colors.green),
@@ -79,7 +79,10 @@ class Home extends StatelessWidget {
                           SizedBox(
                             height: 8,
                           ),
-                          Text(data.name!, overflow: TextOverflow.ellipsis,),
+                          Text(
+                            data.name!,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                           SizedBox(
                             height: 8,
                           ),
@@ -112,7 +115,7 @@ class Home extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   TextButton(
-                    onPressed: (){},
+                    onPressed: () {},
                     child: Text(
                       'Lihat Semua',
                       style: TextStyle(color: Colors.green),
@@ -142,7 +145,10 @@ class Home extends StatelessWidget {
                           SizedBox(
                             height: 8,
                           ),
-                          Text(data.name!, overflow: TextOverflow.ellipsis,),
+                          Text(
+                            data.name!,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                           SizedBox(
                             height: 8,
                           ),
@@ -171,24 +177,166 @@ class Home extends StatelessWidget {
                 'Mungkin Anda Suka',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
+              // SizedBox(
+              //   height: 10,
+              // ),
               SizedBox(
-                height: 10,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: allStoreList.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {},
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Card(
+                              elevation: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  // crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: width * 0.3,
+                                      child: Image.asset(
+                                          allStoreList[index].image!),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      child: Row(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  child: Text(
+                                                    allStoreList[index].name!,
+                                                    style: TextStyle(
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 16),
+                                                        overflow: TextOverflow.ellipsis,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 5,),
+                                                Text(
+                                                  allStoreList[index].category!,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      color: Colors.grey),
+                                                ),
+                                                
+                                              ],
+                                            ),
+                                          ),
+                                          Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.star_outlined,
+                                                    color: Colors.yellow,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  Text(allStoreList[index].rate!,
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold
+                                                  ),)
+                                                ],
+                                              ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                    //   InkWell(
+                    //   onTap: () {},
+                    //   child: Expanded(
+                    //     child: Row(
+                    //       children: [
+                    //         Card(
+                    //           child: Row(
+                    //             children: [
+                    //               Container(
+                    //                 width: width * 0.5,
+                    //                 child: Image.asset(allStoreList[index].image!),
+                    //               ),
+                    //               Expanded(
+                    //                   child: Column(
+                    //                 children: [
+                    //                   Text(
+                    //                     allStoreList[index].name!,
+                    //                     style: TextStyle(
+                    //                       fontWeight: FontWeight.bold,
+                    //                     ),
+                    //                   ),
+                    //                   // Row(
+                    //                   //   children: [
+                    //                   //     Icon(
+                    //                   //       Icons.star_outlined,
+                    //                   //       color: Colors.yellow,
+                    //                   //     ),
+                    //                   //     SizedBox(
+                    //                   //       width: 5,
+                    //                   //     ),
+                    //                   //     Text(allStoreList[index].rate!)
+                    //                   //   ],
+                    //                   // )
+                    //                   // Row(
+                    //                   //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //                   //   children: [
+                    //                   //     Container(
+                    //                   //       decoration: BoxDecoration(
+                    //                   //         color: Colors.grey
+                    //                   //       ),
+                    //                   //       child: Row(
+                    //                   //         children: [
+                    //                   //           InkWell(
+                    //                   //             onTap: () {
+
+                    //                   //             },
+                    //                   //             child: Text('-'),
+                    //                   //           ),
+                    //                   //           SizedBox(width: 5,),
+                    //                   //           Text('0'),
+                    //                   //           SizedBox(width: 5,),
+                    //                   //           InkWell(
+                    //                   //             onTap: () {
+
+                    //                   //             },
+                    //                   //             child: Text('+'),
+                    //                   //           ),
+                    //                   //         ],
+                    //                   //       ),
+                    //                   //     ),
+                    //                   //     Text(allStoreList[index].rate)
+                    //                   //   ],
+                    //                   // )
+                    //                 ],
+                    //               ))
+                    //             ],
+                    //           ),
+                    //         )
+                    //       ],
+                    //     ),
+                    //   ),
+                    // )
+                  },
+                ),
               ),
-              ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: allStoreList.length,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      
-                    },
-                    child: Row(
-                      children: [
-                        
-                      ],
-                    ),
-                  );
-              },),
             ],
           ),
         ),
