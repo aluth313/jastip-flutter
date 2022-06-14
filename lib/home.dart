@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jastip/detail.dart';
 import 'package:jastip/models/store.dart';
 
 class Home extends StatelessWidget {
@@ -64,41 +65,48 @@ class Home extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: storeNearbyList.map((data) {
-                    return Container(
-                      width: 120,
-                      margin: EdgeInsets.only(right: 8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Card(
-                            elevation: 3.0,
-                            child: Container(
-                                width: 120, child: Image.asset(data.image!)),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            data.name!,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star_outlined,
-                                color: Colors.yellow,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(data.rate!)
-                            ],
-                          )
-                        ],
+                    return InkWell(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPage(store: data),
+                          )),
+                      child: Container(
+                        width: 120,
+                        margin: EdgeInsets.only(right: 8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Card(
+                              elevation: 3.0,
+                              child: Container(
+                                  width: 120, child: Image.asset(data.image!)),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              data.name!,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.star_outlined,
+                                  color: Colors.yellow,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(data.rate!)
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     );
                   }).toList(),
@@ -130,41 +138,48 @@ class Home extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: popularStoreList.map((data) {
-                    return Container(
-                      width: 120,
-                      margin: EdgeInsets.only(right: 8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Card(
-                            elevation: 3.0,
-                            child: Container(
-                                width: 120, child: Image.asset(data.image!)),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            data.name!,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star_outlined,
-                                color: Colors.yellow,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(data.rate!)
-                            ],
-                          )
-                        ],
+                    return InkWell(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPage(store: data),
+                          )),
+                      child: Container(
+                        width: 120,
+                        margin: EdgeInsets.only(right: 8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Card(
+                              elevation: 3.0,
+                              child: Container(
+                                  width: 120, child: Image.asset(data.image!)),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              data.name!,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.star_outlined,
+                                  color: Colors.yellow,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(data.rate!)
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     );
                   }).toList(),
@@ -187,7 +202,12 @@ class Home extends StatelessWidget {
                   itemCount: allStoreList.length,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () {},
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailPage(store: allStoreList[index]),
+                          )),
                       child: Row(
                         children: [
                           Expanded(
@@ -219,38 +239,44 @@ class Home extends StatelessWidget {
                                                   child: Text(
                                                     allStoreList[index].name!,
                                                     style: TextStyle(
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         fontSize: 16),
-                                                        overflow: TextOverflow.ellipsis,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                   ),
                                                 ),
-                                                SizedBox(height: 5,),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
                                                 Text(
                                                   allStoreList[index].category!,
-                                                  overflow: TextOverflow.ellipsis,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   style: TextStyle(
                                                       fontSize: 12,
                                                       color: Colors.grey),
                                                 ),
-                                                
                                               ],
                                             ),
                                           ),
                                           Row(
-                                                children: [
-                                                  Icon(
-                                                    Icons.star_outlined,
-                                                    color: Colors.yellow,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 5,
-                                                  ),
-                                                  Text(allStoreList[index].rate!,
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold
-                                                  ),)
-                                                ],
+                                            children: [
+                                              Icon(
+                                                Icons.star_outlined,
+                                                color: Colors.yellow,
                                               ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text(
+                                                allStoreList[index].rate!,
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              )
+                                            ],
+                                          ),
                                         ],
                                       ),
                                     )
