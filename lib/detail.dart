@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jastip/models/store.dart';
+import 'package:intl/intl.dart' as intl;
 
 class DetailPage extends StatefulWidget {
   final Store store;
@@ -13,6 +14,7 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   var myQuantityOrder = [];
   var quantity = 0;
+  var total = 0;
 
   @override
   void initState() {
@@ -178,6 +180,8 @@ class _DetailPageState extends State<DetailPage> {
                                                 if (myQuantityOrder[index] >
                                                     0) {
                                                   myQuantityOrder[index]--;
+                                                  total -= menus[index]['price']
+                                                      as int;
                                                   print(myQuantityOrder[index]);
                                                 }
                                               });
@@ -198,6 +202,8 @@ class _DetailPageState extends State<DetailPage> {
                                             onTap: () {
                                               setState(() {
                                                 myQuantityOrder[index]++;
+                                                total += menus[index]['price']
+                                                    as int;
                                                 print(myQuantityOrder[index]);
                                               });
                                             },
@@ -207,7 +213,7 @@ class _DetailPageState extends State<DetailPage> {
                                       ),
                                     ),
                                     Text(
-                                      'Rp. ${menus[index]['price'].toString()}',
+                                      'Rp. ${intl.NumberFormat.decimalPattern().format(menus[index]['price']).toString()}',
                                       style: TextStyle(fontSize: 14),
                                     )
                                   ],
@@ -223,13 +229,13 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
             SizedBox(
-              height: 80,
+              height: 100,
             )
           ],
         ),
       ),
       bottomSheet: Container(
-        height: 80,
+        height: 100,
         width: double.infinity,
         decoration: BoxDecoration(
             boxShadow: [
@@ -243,11 +249,46 @@ class _DetailPageState extends State<DetailPage> {
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             color: Colors.white),
-        child: Column(
-          children: [
-            Text('Total'),
-            ElevatedButton(onPressed: () {}, child: Text('Order'))
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Total',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text('Rp. ${intl.NumberFormat.decimalPattern().format(total).toString()}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ))
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary:
+                          total == 0 ? Color(0xFFF8F7FC) : Color(0xFF0C4886),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      minimumSize: Size(width, 50)),
+                  onPressed: () {},
+                  child: Text(
+                    'Order',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: total == 0 ? Color(0xFFAFADB7) : Colors.white),
+                  ))
+            ],
+          ),
         ),
       ),
       // floatingActionButton: FloatingActionButton(
