@@ -11,10 +11,21 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  var myQuantityOrder = [];
+  var quantity = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(widget.store.menus);
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
+    var menus = widget.store.menus;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -50,19 +61,203 @@ class _DetailPageState extends State<DetailPage> {
             SizedBox(
               height: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Text(
-                widget.store.name!,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text(
+                        widget.store.name!,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        widget.store.category!,
+                        style: TextStyle(
+                          // color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 15),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.star_outlined,
+                        color: Colors.yellow,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        widget.store.rate!,
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: menus.length,
+                itemBuilder: (context, index) {
+                  myQuantityOrder.add(0);
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 3.0),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: width * 0.2,
+                              height: height * 0.1,
+                              padding: EdgeInsets.all(7.0),
+                              // color: Color(0xFFEAEAED),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Color(0xFFEAEAED),
+                              ),
+                              child: Image.asset(
+                                menus[index]['image_menu'],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Expanded(
+                                child: Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    menus[index]['name'],
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 3, horizontal: 8),
+                                      decoration: BoxDecoration(
+                                          color: Color(0xFFF6F5F8),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0)),
+                                      child: Row(
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                if (myQuantityOrder[index] >
+                                                    0) {
+                                                  myQuantityOrder[index]--;
+                                                  print(myQuantityOrder[index]);
+                                                }
+                                              });
+                                            },
+                                            child: Icon(Icons.remove_outlined),
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            myQuantityOrder[index].toString(),
+                                            style: TextStyle(fontSize: 14),
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                myQuantityOrder[index]++;
+                                                print(myQuantityOrder[index]);
+                                              });
+                                            },
+                                            child: Icon(Icons.add),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Text(
+                                      'Rp. ${menus[index]['price'].toString()}',
+                                      style: TextStyle(fontSize: 14),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ))
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
+            ),
+            SizedBox(
+              height: 80,
             )
           ],
         ),
       ),
+      bottomSheet: Container(
+        height: 80,
+        width: double.infinity,
+        decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ],
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            color: Colors.white),
+        child: Column(
+          children: [
+            Text('Total'),
+            ElevatedButton(onPressed: () {}, child: Text('Order'))
+          ],
+        ),
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () { },
+      //   child: Card(
+      //     elevation: 5,
+      //     child: ElevatedButton(onPressed: (){}, child: Text('Order')),
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
