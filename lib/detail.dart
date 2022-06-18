@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jastip/models/store.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:jastip/order.dart';
 
 class DetailPage extends StatefulWidget {
   final Store store;
@@ -182,7 +184,17 @@ class _DetailPageState extends State<DetailPage> {
                                                   myQuantityOrder[index]--;
                                                   total -= menus[index]['price']
                                                       as int;
+                                                  for (var data
+                                                      in myOrderList) {
+                                                    if (data['name'] ==
+                                                        menus[index]['name']) {
+                                                      myOrderList.remove(data);
+                                                      break;
+                                                    }
+                                                  }
                                                   print(myQuantityOrder[index]);
+                                                  print('myOrderList');
+                                                  print(myOrderList);
                                                 }
                                               });
                                             },
@@ -204,7 +216,14 @@ class _DetailPageState extends State<DetailPage> {
                                                 myQuantityOrder[index]++;
                                                 total += menus[index]['price']
                                                     as int;
+                                                myOrderList.add({
+                                                  'name': menus[index]['name'],
+                                                  'price': menus[index]
+                                                      ['price'],
+                                                  'quantity': 1,
+                                                });
                                                 print(myQuantityOrder[index]);
+                                                print(myOrderList);
                                               });
                                             },
                                             child: Icon(Icons.add),
@@ -262,7 +281,8 @@ class _DetailPageState extends State<DetailPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         )),
-                    Text('Rp. ${intl.NumberFormat.decimalPattern().format(total).toString()}',
+                    Text(
+                        'Rp. ${intl.NumberFormat.decimalPattern().format(total).toString()}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ))
@@ -279,7 +299,36 @@ class _DetailPageState extends State<DetailPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       minimumSize: Size(width, 50)),
-                  onPressed: () {},
+                  onPressed: () async {
+                    var checkoutData = [];
+                    int total = 0;
+                    for (var i = 0; i < myQuantityOrder.length; i++) {
+                      if (myQuantityOrder[i] > 0) {
+                        checkoutData.add({
+                          'name': menus[i]['name'],
+                          'price': menus[i]['price'],
+                          'quantity': myQuantityOrder[i],
+                        });
+                        total +=
+                            (menus[i]['price'] * myQuantityOrder[i]) as int;
+                      }
+                    }
+                    myCheckout['data'] = checkoutData;
+                    myCheckout['total'] = total;
+                    print('myCheckout');
+                    print(myCheckout);
+                    await EasyLoading.show(
+                      status: 'loading...',
+                      maskType: EasyLoadingMaskType.black,
+                    );
+                    Future.delayed(
+                      Duration(seconds: 2),
+                      () async {
+                        await EasyLoading.showSuccess(
+                            'Pesanan Anda sudah masuk, mohon untuk menunggu');
+                      },
+                    );
+                  },
                   child: Text(
                     'Order',
                     style: TextStyle(
@@ -291,14 +340,6 @@ class _DetailPageState extends State<DetailPage> {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () { },
-      //   child: Card(
-      //     elevation: 5,
-      //     child: ElevatedButton(onPressed: (){}, child: Text('Order')),
-      //   ),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

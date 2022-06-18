@@ -34,8 +34,19 @@ class Home extends StatelessWidget {
                         Text('Selamat Datang!')
                       ],
                     ),
-                    Container(
-                        width: 60, child: Image.asset('images/avatar.png'))
+                    Row(
+                      children: [
+                        IconButton(
+                          tooltip: 'My Order List',
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.receipt_long_outlined,
+                          ),
+                        ),
+                        Container(
+                            width: 60, child: Image.asset('images/avatar.png')),
+                      ],
+                    )
                   ],
                 ),
               ),

@@ -37,11 +37,17 @@ class GetStarted extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20)),
                       minimumSize: Size(width, 50)),
                   onPressed: () {
-                    Navigator.push(
+                    // Navigator.pushAndRemoveUntil(context, newRoute, (route) => false)
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => Home(),
                         ));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => Home(),
+                    //     ));
                   },
                   child: Text(
                     'Get Started',
