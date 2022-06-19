@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jastip/detail.dart';
+import 'package:jastip/list_order.dart';
+import 'package:jastip/list_transaction.dart';
 import 'package:jastip/models/store.dart';
 
 class Home extends StatelessWidget {
@@ -38,7 +40,11 @@ class Home extends StatelessWidget {
                       children: [
                         IconButton(
                           tooltip: 'My Order List',
-                          onPressed: () {},
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ListTransaction(),
+                              )),
                           icon: Icon(
                             Icons.receipt_long_outlined,
                           ),
@@ -61,7 +67,11 @@ class Home extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ListOrder(),
+                        )),
                     child: Text(
                       'Lihat Semua',
                       style: TextStyle(color: Colors.green),
@@ -134,7 +144,11 @@ class Home extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ListOrder(),
+                        )),
                     child: Text(
                       'Lihat Semua',
                       style: TextStyle(color: Colors.green),

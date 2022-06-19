@@ -305,6 +305,7 @@ class _DetailPageState extends State<DetailPage> {
                     for (var i = 0; i < myQuantityOrder.length; i++) {
                       if (myQuantityOrder[i] > 0) {
                         checkoutData.add({
+                          'image': menus[i]['image_menu'],
                           'name': menus[i]['name'],
                           'price': menus[i]['price'],
                           'quantity': myQuantityOrder[i],
@@ -313,8 +314,12 @@ class _DetailPageState extends State<DetailPage> {
                             (menus[i]['price'] * myQuantityOrder[i]) as int;
                       }
                     }
-                    myCheckout['data'] = checkoutData;
-                    myCheckout['total'] = total;
+                    myCheckout.add({
+                      'total': total,
+                      'data': checkoutData,
+                    });
+                    // myCheckout['data'] = checkoutData;
+                    // myCheckout['total'] = total;
                     print('myCheckout');
                     print(myCheckout);
                     await EasyLoading.show(
